@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+
+        body {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            color: #fff;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .message {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s ease-in-out;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .yes {
+            background-color: #ff4d79;
+            color: white;
+        }
+
+        .yes:hover {
+            background-color: #ff1a5c;
+            transform: scale(1.1);
+        }
+
+        .no {
+            background-color: #ffcccb;
+            color: black;
+        }
+
+        .no:hover {
+            background-color: #ff9999;
+            transform: scale(1.1);
+        }
+
+        .hidden {
+            display: none;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: float 6s linear infinite;
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
+        }
+
+        /* Generate multiple floating hearts */
+        .heart:nth-child(1) { left: 20%; animation-duration: 4s; }
+        .heart:nth-child(2) { left: 50%; animation-duration: 6s; }
+        .heart:nth-child(3) { left: 80%; animation-duration: 5s; }
+        .heart:nth-child(4) { left: 30%; animation-duration: 7s; }
+        .heart:nth-child(5) { left: 70%; animation-duration: 4.5s; }
+
+    </style>
+</head>
+<body>
+
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+
+    <div class="message">
+        Our first day talking was on **11 Feb 2025**.<br>
+        It was the day when I finally started talking with you.<br>
+        I had a big crush on you since the day I saw you, and<br>
+        You were the only girl with whom I had no hesitation to talk about everything.<br>
+        And lastly, I want to say that...
+    </div>
+
+    <div class="question">Will you be mine? ❤️</div>
+
+    <div class="buttons">
+        <button class="yes" onclick="showMessage(true)">Yes ❤️</button>
+        <button class="no" onclick="showMessage(false)">No 😢</button>
+    </div>
+
+    <div id="responseYes" class="hidden">Yay! You just made my world brighter! ❤️🥰</div>
+    <div id="responseNo" class="hidden">Are you sure? 🥺 Think again! 😢</div>
+
+    <script>
+        function showMessage(answer) {
+            document.getElementById('responseYes').style.display = answer ? 'block' : 'none';
+            document.getElementById('responseNo').style.display = answer ? 'none' : 'block';
+        }
+    </script>
+
+</body>
+</html>
