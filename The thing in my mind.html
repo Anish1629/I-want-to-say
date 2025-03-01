@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+        body {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+            color: #fff;
+            padding: 50px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Semi-transparent Background for Message */
+        .message-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .message {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ff1493; /* More Vibrant Pink */
+}
+
+        .question {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        /* Buttons */
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Glowing Buttons */
+        .yes {
+            background-color: #ff4d79;
+            color: white;
+            box-shadow: 0 0 10px #ff4d79;
+        }
+
+        .yes:hover {
+            background-color: #ff1a5c;
+            box-shadow: 0 0 20px #ff1a5c;
+            transform: scale(1.1);
+        }
+
+        .no {
+            background-color: #ffcccb;
+            color: black;
+            box-shadow: 0 0 10px #ffcccb;
+        }
+
+        .no:hover {
+            background-color: #ff9999;
+            box-shadow: 0 0 20px #ff9999;
+            transform: scale(1.1);
+        }
+
+        .hidden {
+            display: none;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        /* Confetti Canvas */
+        #confettiCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Romantic Song (Auto-Play) -->
+    <audio id="romanticSong" loop>
+        <source src="https://drive.google.com/file/d/1-0GcZNn_Pbp5H06k7jziJYK1vkbXcb7T/view?usp=drivesdk" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="message-box">
+        <div class="message">
+            Our first day talking was on <b>11 Feb 2025</b>.<br>
+            It was the day when I finally started talking with you.<br>
+            I had a big crush on you since the day I saw you, and<br>
+            You were the only girl with whom I had no hesitation to talk about everything.<br>
+            And lastly, I want to say that...
+        </div>
+    </div>
+
+    <div class="question">Will you be mine? ❤️</div>
+
+    <div class="buttons">
+        <button class="yes" onclick="sendNotification('Yes')">Yes ❤️</button>
+        <button class="no" onclick="sendNotification('No')">No 😢</button>
+    </div>
+
+    <div id="responseYes" class="hidden">Yay! You just made my world brighter! ❤️🥰</div>
+    <div id="responseNo" class="hidden">Are you sure? 🥺 Think again! 😢</div>
+
+    <script>
+        function sendNotification(answer) {
+            document.getElementById('responseYes').style.display = answer === 'Yes' ? 'block' : 'none';
+            document.getElementById('responseNo').style.display = answer === 'No' ? 'block' : 'none';
+
+            if (answer === 'Yes') {
+                startConfetti();
+                document.getElementById('romanticSong').play();
+            }
+
+            // Email Notification (Requires Formspree)
+            fetch("https://formspree.io/f/xovjgwey", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: `Your crush clicked: ${answer}` })
+            }).then(response => {
+                console.log("Notification sent!");
+            }).catch(error => console.error("Error sending notification:", error));
+        }
+
+        // Confetti Effect
+        function startConfetti() {
+            const confettiSettings = { target: 'confettiCanvas' };
+            const confetti = new ConfettiGenerator(confettiSettings);
+            confetti.render();
+        }
+    </script>
+
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js"></script>
+
+</body>
+</html>
